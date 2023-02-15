@@ -23,8 +23,10 @@ HELP_TEXT = """This bot save your notes
 def hello(*args):
     return "How can I help you?"
 
+
 def bye(*args):
     return "Bye"
+
 
 def help_user(*args):
     return HELP_TEXT
@@ -66,9 +68,13 @@ def search_notes(message):
 
 def show_all(*args):
     if len(NOTEBOOK):
-        return NOTEBOOK.show_all()
+        return NOTEBOOK.show_all_records()
     else:
         return 'No notes found'
+
+
+def show_one_record(*args):
+    return NOTEBOOK.show_one_record(args[0])
 
 
 def sort_tags(message):
@@ -78,6 +84,7 @@ def sort_tags(message):
 COMMANDS = {
     hello: ["hello", "hi"],
     show_all: ["show all"],
+    show_one_record: ["show"],
     help_user: ["help"],
     bye: [".", "bye", "good bye", "close", "exit"],
     add_note: ["add"],

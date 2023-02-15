@@ -1,6 +1,7 @@
 from collections import UserDict
 from datetime import datetime
 from pretty_tables import ABview
+from abstract_class import ShowRecords
 import pickle
 import re
 
@@ -150,15 +151,6 @@ class Record:
         else:
             return f"{self.name}'s birthday is unknown"
 
-    # def show_contact_info(self):
-    #     phones = ", ".join([str(ph) for ph in self.phones])
-    #     return {
-    #         "name": str(self.name.value),
-    #         "phone": phones,
-    #         "birthday": self.birthday,
-    #         "email": self.email,
-    #     }
-
     def remove_phone(self, phone):
         phone = Phone(phone)
         for ph in self.phones:
@@ -168,7 +160,7 @@ class Record:
         return f"Number {phone} not found"
 
 
-class AddressBook(UserDict):
+class AddressBook(UserDict, ShowRecords):
     """Class for creating address book"""
 
     def __init__(self):

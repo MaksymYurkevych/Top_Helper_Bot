@@ -28,7 +28,7 @@ class ABview(PrettyView):
 class NotesView(PrettyView):
     def create_table(self, data):
         pt = PrettyTable()
-        pt.field_names = ["Name", "Tags"]
+        pt.field_names = ["Index", "Tags", "Note"]
         for row in data:
             pt.add_row(row)
         return pt

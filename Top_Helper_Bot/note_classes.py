@@ -1,10 +1,11 @@
 from collections import UserDict
 from pretty_tables import NotesView
+from abstract_class import ShowRecords
 import pickle
 import re
 
 
-class NoteBook(UserDict):
+class NoteBook(UserDict, ShowRecords):
     def __init__(self):
         super().__init__()
         self.index = 1
@@ -56,11 +57,20 @@ class NoteBook(UserDict):
         else:
             return 'No matches found'
 
-    def show_all(self):
+    def show_all_records(self):
         result = []
         for index, wr in self.data.items():
             result.append([index, ", ".join(p.value for p in wr.tags), wr.note.value])
         return self.pt.create_table(result)
+
+    def show_one_record(self, name):
+        result = []
+        for rec in self.data:
+            for tag in self.data[rec].tags:
+                if name.lower() in str(tag).lower():
+                    result.append([rec, ", ".join(n.value for n in self.data[rec].tags), self.data[rec].note.value])
+        if result:
+            return self.pt.create_table(result)
 
 
 class Field:

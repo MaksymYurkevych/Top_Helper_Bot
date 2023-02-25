@@ -4,8 +4,12 @@ from my_calc import main as my_calc_main
 from sort import main as sort_main
 from note_functions import run_notes as nb_main
 from ab_functions import main as ab_main
+from flask import Flask
+
+app = Flask(__name__)
 
 
+@app.route("/")
 def main_menu():
     work_loop = True
     while work_loop:
@@ -42,4 +46,4 @@ def main_menu():
 
 
 if __name__ == '__main__':
-    main_menu()
+    app.run(debug=False, host="0.0.0.0")
